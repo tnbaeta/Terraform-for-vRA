@@ -1,20 +1,24 @@
-# Configure the Azure provider
 terraform {
   required_providers {
     azurerm = {
       source = "hashicorp/azurerm"
-      version = "~> 3.0.2"
+      version = "3.15.1"
     }
-  } 
-
-  required_version = ">=1.1.0"
+  }
+  cloud {
+    organization = "illusion-factory-labs"
+    workspaces {
+      name = "learn-terraform"
+    }
+  }
 }
 
 provider "azurerm" {
   features {}
+	
 }
 
 resource "azurerm_resource_group" "rg" {
-  name = "myTFResourceGroup"
+  name     = var.resource_group_name
   location = "westus2"
 }
