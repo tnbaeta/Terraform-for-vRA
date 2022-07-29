@@ -36,3 +36,8 @@ variable "address_prefixes" {
 variable "environment" {
 	default = "prod"
 }
+
+variable "subnet_count" {
+  type = number
+  default = 2
+}
