@@ -5,12 +5,12 @@ terraform {
       version = "3.15.1"
     }   
   }
-  cloud {
-    organization = "illusion-factory-labs"
-    workspaces {
-      name = "brd"
-    }
-  }
+#  cloud {
+ #   organization = "illusion-factory-labs"
+  #  workspaces {
+   #   name = "brd"
+   # }
+  #}
 }
 
 provider "azurerm" {
