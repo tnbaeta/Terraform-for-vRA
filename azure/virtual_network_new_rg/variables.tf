@@ -25,14 +25,6 @@ variable "dns_servers" {
   default = ["10.10.10.10", "10.20.0.0"]
 }
 
-variable "subnet_names" {
-	default = ["brd_subnet-01","brd_subnet-02"]
-}
-
-variable "address_prefixes" {
-  default = ["10.0.1.0/24","10.0.2.0/24"]
-}
-
 variable "environment" {
 	default = "prod"
 }
@@ -40,4 +32,17 @@ variable "environment" {
 variable "subnet_count" {
   type = number
   default = 2
+}
+
+variable "subnet" {
+  type = list(object({
+    name = string
+    address = list(string)
+    }))
+  default = [
+    {
+      name = "brd-1"
+      address = ["addr-1"]
+    }
+  ]
 }
