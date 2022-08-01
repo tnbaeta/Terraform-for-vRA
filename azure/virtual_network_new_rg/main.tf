@@ -46,5 +46,5 @@ resource "azurerm_subnet" "brd_subnet" {
   virtual_network_name = azurerm_virtual_network.brd_vn.name
   resource_group_name = azurerm_resource_group.brd_rg.name
   address_prefixes = "${var.subnet[count.index].address}"
-  count          = var.subnet_count
+  count          = "${length(var.subnet)}"
 }
