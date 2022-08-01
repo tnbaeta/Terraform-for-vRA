@@ -7,10 +7,6 @@ variable "rg_name" {
   type = string
   default = "brd_rg"
 }
-variable "nsg_name" {
-  type = string
-	default = "brd_nsg"
-}
 
 variable "vn_name" {
   type = string
