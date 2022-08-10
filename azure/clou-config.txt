@@ -1,0 +1,58 @@
+#cloud-config
+        repo_update: true
+        repo_upgrade: true
+
+        packages:
+          - bind9
+          - bind9utils
+          - bind9-dnsutils
+          - bind9-doc
+          - bind9-host
+
+        write_files:
+          - path: /etc/bind/named.conf.options
+            content: |
+              forwarders {
+                8.8.8.8;
+                8.8.8.4;
+              };
+          - path: /etc/bind/named.conf.local
+            content: |
+              zone "'${input.domain}'" {
+                type master;
+                file "/etc/bind/zones/forward.'${input.domain}'";
+                
+              };
+              zone "231.168.192.in-addr.arpa" {
+                type master;
+                file "/etc/bind/reverse.'${input.domain}'";
+                
+              };
+          - path: /etc/bind/zones/forward.'${input.domain}'
+            content: |
+              $TTL    604800
+              @       IN      SOA     '${self.name + "." + input.domain + "."}' root.'${self.name + "." + input.domain + "."}' (
+                                            3         ; Serial
+                                       604800         ; Refresh
+                                        86400         ; Retry
+                                      2419200         ; Expire
+                                       604800 )       ; Negative Cache TTL
+              @       IN      NS      '${self.name + "." + input.domain + "."}'
+              '${self.name +    " IN" +     " A"  +     input.ip}'
+              
+          - path: /etc/bind/reverse.mydomain.com
+            content: |
+              $TTL    604800
+              @       IN      SOA     '${self.name + "." + input.domain + "."}' root.'${self.name + "." + input.domain + "."}' (
+                                            3
+                                       604800
+                                        86400
+                                      2419200
+                                       604800 )
+              @       IN      NS      '${self.name + "." + input.domain + "."}'
+              '${self.name +    " IN" +     " A"  +     input.ip}'
+              10       IN      PTR     ${resource.vm.name + "." + input.domain + "."}
+          - path: /etc/resolv.conf
+            content: |
+              search ${input.domain}
+              nameserver ${self.address}
