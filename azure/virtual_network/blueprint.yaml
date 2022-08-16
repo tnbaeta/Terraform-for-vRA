@@ -1,4 +1,5 @@
 name: Terraform Azure - Virtual Network
+version: 1.0
 inputs:
   commit_id:
     type: string
