@@ -9,9 +9,22 @@ variable "create_rg" {
   description = "Marque a caixa de seleção para criar im novo Grupo de Recursos ou deixe desmarcada para escolher um Grupo de Recursos Existente."
   default = false
 }
+
+variable "create_nsg" {
+  type = bool
+  description = "Marque a caixa de seleção para criar im novo Grupo de Segurança de Rede"
+  default = false
+}
+
 variable "rg_name" {
   type = string
   default = "brd_rg"
+}
+
+variable "nsg_name" {
+  type = string
+  description = "Digite o nome do Grupo de Segurança de Rede"
+  default = "brd_nsg"
 }
 
 variable "vn_name" {
