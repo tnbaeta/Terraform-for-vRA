@@ -12,6 +12,13 @@ provider "azurerm" {
   features {}
 }
 
+resource "azurerm_network_security_group" "brd_sg" {
+  name                = var.nsg_name
+  location            = var.location
+  resource_group_name = var.rg_name
+
+  }
+
 resource "azurerm_virtual_network" "brd_vn" {
   name                = var.vn_name
   location            = var.location

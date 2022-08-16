@@ -8,6 +8,11 @@ variable "rg_name" {
   default = "brd_rg"
 }
 
+variable "nsg_name" {
+  type = string
+  default = "brd_nsg"
+}
+
 variable "vn_name" {
   type = string
 	default = "brd_vn"
