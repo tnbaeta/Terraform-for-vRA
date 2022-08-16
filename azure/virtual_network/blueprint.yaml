@@ -1,5 +1,5 @@
 name: Terraform - Azure Virtual Network
-version: 1.1
+version: 1.2
 inputs:
   tf_version:
     type: string
@@ -8,8 +8,8 @@ inputs:
   commit_id:
     type: string
     default: 7e19dce2a4b62ce14aa15a43f4838c377c1d7ef6
-#  nsg_name:
-#    type: string
+  nsg_name:
+    type: string
   location:
     type: string
     title: Região
