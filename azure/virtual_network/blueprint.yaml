@@ -1,4 +1,4 @@
-name: Terraform - Azure: Virtual Network
+name: Terraform - Azure Virtual Network
 version: 1.0
 inputs:
   tf_version:
