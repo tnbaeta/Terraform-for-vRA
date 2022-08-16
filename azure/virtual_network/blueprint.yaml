@@ -1,5 +1,5 @@
 name: Terraform - Azure Virtual Network
-version: 1.2
+version: 1.0
 inputs:
   tf_version:
     type: string
@@ -15,7 +15,7 @@ inputs:
     title: Região
     description: Escolha em que região deseja criar a rede virtual.
     default: eastus
-  new_rg:
+  create_rg:
     type: boolean
     title: Criar novo Grupo de Recursos?
     description: Deixe a caixa de seleção marcada para criar um novo Grupo de Recursos ou desmarcada para utilizar um Grupo de Recursos existente.
@@ -97,5 +97,5 @@ resources:
       configurationSource:
         repositoryId: 9fb34712-b1c8-40a9-917f-7eddffe9b1d5
         commitId: ${input.commit_id}
-        sourceDirectory: '${input.new_rg == true ? "azure/virtual_network/virtual_network_new_rg" : "azure/virtual_network/virtual_network_existing_rg"}'
+        sourceDirectory: '${input.new_rg == true ? "azure/virtual_network" : "azure/virtual_network"}'
 
