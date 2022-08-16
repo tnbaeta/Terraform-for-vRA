@@ -1,16 +1,15 @@
 variable "location" {
   type = string
-  default = "eastus"
+  default = "westus2"
 }
 
+variable "create_rg" {
+  type = bool
+  default = false
+}
 variable "rg_name" {
   type = string
   default = "brd_rg"
-}
-
-variable "nsg_name" {
-  type = string
-  default = "brd_nsg"
 }
 
 variable "vn_name" {

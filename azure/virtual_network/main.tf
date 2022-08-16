@@ -15,6 +15,14 @@ provider "azurerm" {
 resource "azurerm_resource_group" "brd_rg" {
   name     = var.rg_name
   location = var.location
+
+	lifecycle {
+    # The AMI ID must refer to an existing AMI that has the tag "nomad-server".
+    postcondition {
+      condition     = var.create_rg == true
+      error_message = "Create RG must be checked"
+    }
+  }
 }
 
 resource "azurerm_virtual_network" "brd_vn" {
