@@ -1,5 +1,5 @@
 name: Terraform - Azure Virtual Network
-version: 1.0
+version: 1
 inputs:
   tf_version:
     type: string
@@ -10,6 +10,8 @@ inputs:
     default: 7e19dce2a4b62ce14aa15a43f4838c377c1d7ef6
   nsg_name:
     type: string
+    title: NSG Name
+    description: Digite o nome do Grupo de Segurança de Rede.
   location:
     type: string
     title: Região
@@ -73,13 +75,14 @@ inputs:
           type: array
           title: Endereço
           maxItems: 1
+    default: 
+      - name: "sub1"
+        address: ["10.0.1.0/24"]
+      - name: "sub2"
+        address: ["10.0.2.0/24"]
 resources:
   terraform:
     type: Cloud.Terraform.Configuration
-    metadata:
-      layoutPosition:
-        - 0
-        - 0
     properties:
       variables:
         location: ${input.location}
@@ -97,5 +100,5 @@ resources:
       configurationSource:
         repositoryId: 9fb34712-b1c8-40a9-917f-7eddffe9b1d5
         commitId: ${input.commit_id}
-        sourceDirectory: "azure/virtual_network"
+        sourceDirectory: azure/virtual_network
 

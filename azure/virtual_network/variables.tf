@@ -1,6 +1,7 @@
 variable "location" {
   type = string
-  description = "Região"
+  description = "Escolha a Região para criação dos recursos"
+  title = "Região"
   default = "eastus"
 }
 
