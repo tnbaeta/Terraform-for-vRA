@@ -86,6 +86,8 @@ resources:
         location: ${input.location}
         create_rg: ${input.create_rg}
         rg_name: '${input.create_rg == true ? input.new_rg_name : input.existing_rg_name}'
+        create_nsg: ${input.create_nsg}
+        nsg_name: ${input.nsg_name}
         vn_name: ${input.vn_name}
         address_space: ${input.address_space}
         dns_servers: ${input.dns_servers}
