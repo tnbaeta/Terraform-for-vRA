@@ -1,39 +1,37 @@
 variable "location" {
   type = string
   description = "Escolha a Região para criação dos recursos"
-  title = "Região"
   default = "eastus"
 }
 
 variable "create_rg" {
   type = bool
-  description = "Criar novo Grupo de Recursos"
+  description = "Marque a caixa de seleção para criar im novo Grupo de Recursos ou deixe desmarcada para escolher um Grupo de Recursos Existente."
   default = false
 }
 variable "rg_name" {
   type = string
-  description = "Nome do Grupo de Recursos"
   default = "brd_rg"
 }
 
 variable "vn_name" {
   type = string
-  description = "Nome da Rede Virtual"
+  description = "Digite o nome da Rede Virtual"
 	default = "brd_vn"
 }
 
 variable "address_space" {
-  description = "Espaço de Endereço (CIDR)"
+  description = "Digite o espaço de endereços para a Rede Virtual no formato CIDR"
   default = ["10.0.0.0/16"]
 }
 
 variable "dns_servers" {
-  description = "Servidor(es) de DNS"
+  description = "Adicione um ou mais servidores de DNS"
   default = ["10.10.10.10", "10.20.0.0"]
 }
 
 variable "environment" {
-  description = "Ambiente"
+  description = "Escolha em que ambiente deseja criar os recursos para adição de etiquetas (tags)."
 	default = "prod"
 }
 
@@ -42,6 +40,7 @@ variable "subnet" {
     name = string
     address = list(string)
     }))
+  description = "Adicione uma ou mais sub-redes em formato CIDR. As sub-redes devem estar contidas dentro do espaço de endereços configurados anteriormente."
   default = [
     {
       name = "brd-1"
