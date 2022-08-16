@@ -83,7 +83,7 @@ resources:
     properties:
       variables:
         location: ${input.location}
-        rg_name: '${input.new_rg == 1 ? input.new_rg_name : input.existing_rg_name}'
+        rg_name: '${input.create_rg == 1 ? input.new_rg_name : input.existing_rg_name}'
         vn_name: ${input.vn_name}
         address_space: ${input.address_space}
         dns_servers: ${input.dns_servers}
