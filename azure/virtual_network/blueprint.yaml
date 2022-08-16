@@ -97,5 +97,5 @@ resources:
       configurationSource:
         repositoryId: 9fb34712-b1c8-40a9-917f-7eddffe9b1d5
         commitId: ${input.commit_id}
-        sourceDirectory: '${input.new_rg == true ? "azure/virtual_network" : "azure/virtual_network"}'
+        sourceDirectory: "azure/virtual_network"
 
