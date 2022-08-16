@@ -1,0 +1,101 @@
+name: Terraform - Virtual Network
+version: 1.0
+inputs:
+  tf_version:
+    type: string
+    title: Versão do Terraform
+    default: 1.2.6
+  commit_id:
+    type: string
+    default: 7e19dce2a4b62ce14aa15a43f4838c377c1d7ef6
+#  nsg_name:
+#    type: string
+  location:
+    type: string
+    title: Região
+    description: Escolha em que região deseja criar a rede virtual.
+    default: eastus
+  new_rg:
+    type: boolean
+    title: Criar novo Grupo de Recursos?
+    description: Deixe a caixa de seleção marcada para criar um novo Grupo de Recursos ou desmarcada para utilizar um Grupo de Recursos existente.
+    default: false
+  new_rg_name:
+    type: string
+    title: Novo Grupo de Recursos
+    description: Digite o nome para um novo Grupo de Recursos.
+    default: brd_rg
+  existing_rg_name:
+    type: string
+    title: Grupo de Recursos Existente
+    description: Selecione um Grupo de Recursos existente.
+  vn_name:
+    type: string
+    title: Nome da Rede Virtual
+    description: Digite o nome da Rede Virtual
+    default: brd_vn
+  address_space:
+    type: array
+    title: Espaço(s) de endereço(s)
+    description: Digite o(s) espaço(s) de endereço para a Rede Virtual.
+    default:
+      - 10.0.0.0/16
+  dns_servers:
+    type: array
+    title: Servidores DNS
+    description: Digite o endereço do(s) servidor(es) DNS.
+    default:
+      - 10.10.10.10
+      - 10.20.0.0
+  environment:
+    type: string
+    title: Ambiente
+    description: Selecione o ambiente no qual a rede virtual será criada.
+    oneOf:
+      - title: Desenvolvimento
+        const: dev
+      - title: Produção
+        const: prod
+      - title: Teste
+        const: teste
+    default: dev
+  subnet:
+    type: array
+    title: Sub-redes
+    description: Adicione as Sub-redes desejadas
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+          title: Nome
+        address:
+          type: array
+          title: Endereço
+          maxItems: 1
+resources:
+  terraform:
+    type: Cloud.Terraform.Configuration
+    metadata:
+      layoutPosition:
+        - 0
+        - 0
+    properties:
+      variables:
+        location: ${input.location}
+        rg_name: '${input.new_rg == 1 ? input.new_rg_name : input.existing_rg_name}'
+        vn_name: ${input.vn_name}
+        address_space: ${input.address_space}
+        dns_servers: ${input.dns_servers}
+        environment: ${input.environment}
+        subnet: ${input.subnet}
+      providers:
+        - name: azurerm
+          # List of available cloud zones: Illusion Factory Azure/brazil,Illusion Factory Azure/eastus,Illusion Factory Azure/westus
+          cloudZone: ${"Illusion Factory Azure/" + input.location}
+      terraformVersion: ${input.tf_version}
+      configurationSource:
+        repositoryId: 9fb34712-b1c8-40a9-917f-7eddffe9b1d5
+        commitId: ${input.commit_id}
+        sourceDirectory: '${input.new_rg == true ? "azure/virtual_network_new_rg" : "azure/virtual_network_existing_rg"}'
+
