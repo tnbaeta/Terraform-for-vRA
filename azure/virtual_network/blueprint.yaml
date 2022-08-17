@@ -1,5 +1,5 @@
 name: Terraform Azure - Virtual Network
-version: 2.0
+version: 2.1
 inputs:
   commit_id:
     type: string
@@ -41,7 +41,7 @@ inputs:
     description: Digite o nome da Rede Virtual.
   address_space:
     type: array
-    title: Espaço de endereços (CID)
+    title: Espaço de endereços (CIDR)
     default:
       - 10.0.0.0/16
     description: Digite o espaço de endereços para a Rede Virtual no formato CIDR
