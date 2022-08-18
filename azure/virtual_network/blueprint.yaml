@@ -1,5 +1,5 @@
 name: Terraform Azure - Virtual Network
-version: 2.2
+version: 2.3
 inputs:
   commit_id:
     type: string
@@ -8,12 +8,12 @@ inputs:
   location:
     type: string
     default: eastus
-    description: Escolha a Região para criação dos recursos
+    description: Escolha a Região para criação dos recursos.
   create_rg:
     type: boolean
     title: Deseja criar um novo Grupo de Recursos?
     default: false
-    description: Marque a caixa de seleção para criar im novo Grupo de Recursos ou deixe desmarcada para escolher um Grupo de Recursos Existente.
+    description: Marque a caixa de seleção para criar um novo Grupo de Recursos ou deixe desmarcada para escolher um Grupo de Recursos Existente.
   create_sr:
     type: boolean
     title: Deseja criar uma regra de segurança?
@@ -32,12 +32,12 @@ inputs:
   create_nsg:
     type: boolean
     title: Deseja criar um Grupo de Segurança de Rede?
-    description: Marque a caixa de seleção para criar im novo Grupo de Segurança de Rede
+    description: Marque a caixa de seleção para criar im novo Grupo de Segurança de Rede.
     default: false
   nsg_name:
     type: string
     title: Nome do Grupo de Segurança de Rede
-    description: Digite um nome para o Grupo de Segurança de Rede
+    description: Digite um nome para o Grupo de Segurança de Rede.
     default: brd_nsg
   vn_name:
     type: string
@@ -49,14 +49,14 @@ inputs:
     title: Espaço de endereços (CIDR)
     default:
       - 10.0.0.0/16
-    description: Digite o espaço de endereços para a Rede Virtual no formato CIDR
+    description: Digite o espaço de endereços para a Rede Virtual no formato CIDR.
   dns_servers:
     type: array
     title: Servidor(es) de DNS
     default:
       - 10.10.10.10
       - 10.20.0.0
-    description: Adicione um ou mais servidores de DNS
+    description: Adicione um ou mais servidores de DNS.
   environment:
     type: string
     title: Ambiente
@@ -104,7 +104,7 @@ resources:
           cloudZone: ${"Illusion Factory Azure/" + input.location}
       terraformVersion: 1.2.6
       configurationSource:
-        repositoryId: 9fb34712-b1c8-40a9-917f-7eddffe9b1d5
+        repositoryId: fa9bf57b-c381-4a3d-a6f2-6ccc5b668d59
         commitId: ${input.commit_id}
         sourceDirectory: azure/virtual_network
 
