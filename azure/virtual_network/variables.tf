@@ -15,6 +15,11 @@ variable "create_nsg" {
   description = "Marque a caixa de seleção para criar im novo Grupo de Segurança de Rede"
   default = false
 }
+variable "create_sr" {
+  type = bool
+  description = "Marque a caixa de seleção para criar uma nova regra no Grupo de Segurança de Rede"
+  default = true
+}
 
 variable "rg_name" {
   type = string

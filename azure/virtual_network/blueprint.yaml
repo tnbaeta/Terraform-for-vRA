@@ -1,5 +1,5 @@
 name: Terraform Azure - Virtual Network
-version: 2.1
+version: 2.2
 inputs:
   commit_id:
     type: string
@@ -14,6 +14,11 @@ inputs:
     title: Deseja criar um novo Grupo de Recursos?
     default: false
     description: Marque a caixa de seleção para criar im novo Grupo de Recursos ou deixe desmarcada para escolher um Grupo de Recursos Existente.
+  create_sr:
+    type: boolean
+    title: Deseja criar uma regra de segurança?
+    description: Marque a caixa de seleção para criar uma nova regra no Grupo de Segurança.
+    default: true
   new_rg_name:
     type: string
     title: Nome do novo Grupo de Recursos

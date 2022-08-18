@@ -38,6 +38,21 @@ resource "azurerm_virtual_network" "brd_vn" {
   }
 }
 
+resource "azurerm_network_security_rule" "brd_sr" {
+  count												= var.create_sr == true ? 1 : 0
+  name                        = "brd_sr"
+  priority                    = 100
+  direction                   = "Outbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "*"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "*"
+  resource_group_name         = length(azurerm_resource_group.brd_rg) == 1 ? azurerm_resource_group.brd_rg[0].name : var.rg_name
+  network_security_group_name = azurerm_network_security_group.brd_nsg[0].name
+}
+
 resource "azurerm_subnet" "brd_subnet" {
   name           = "${var.subnet[count.index].name}"
   virtual_network_name = azurerm_virtual_network.brd_vn.name
