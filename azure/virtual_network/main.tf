@@ -38,3 +38,15 @@ resource "azurerm_subnet" "brd_subnet" {
   address_prefixes = "${var.subnet[count.index].address}"
   count          = "${length(var.subnet)}"
 }
+
+resource "azurerm_network_interface" "brd_nic" {
+  name                = "brd_nic"
+  location            = var.location
+  resource_group_name = length(azurerm_resource_group.brd_rg) == 1 ? azurerm_resource_group.brd_rg[0].name : var.rg_name
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.brd_subnet[0].id
+    private_ip_address_allocation = "Dynamic"
+  }
+}
