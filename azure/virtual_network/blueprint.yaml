@@ -1,5 +1,5 @@
 name: Terraform Azure - Virtual Network
-version: 3
+version: 3.1
 inputs:
   commit_id:
     type: string
@@ -42,6 +42,11 @@ inputs:
       - 10.10.10.10
       - 10.20.0.0
     description: Adicione um ou mais servidores de DNS.
+  vnic_name:
+    type: string
+    title: Nome da vNIC
+    description: Digite um nome para a interface virtual de rede.
+    default: brd_vnic
   environment:
     type: string
     title: Ambiente
@@ -79,6 +84,7 @@ resources:
         vn_name: ${input.vn_name}
         address_space: ${input.address_space}
         dns_servers: ${input.dns_servers}
+        vnic_name: ${input.vnic_name}
         environment: ${input.environment}
         subnet: ${input.subnet}
       providers:
