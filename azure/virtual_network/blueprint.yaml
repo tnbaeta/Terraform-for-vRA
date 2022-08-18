@@ -1,5 +1,5 @@
 name: Terraform Azure - Virtual Network
-version: 2.3
+version: 3
 inputs:
   commit_id:
     type: string
@@ -14,11 +14,6 @@ inputs:
     title: Deseja criar um novo Grupo de Recursos?
     default: false
     description: Marque a caixa de seleção para criar um novo Grupo de Recursos ou deixe desmarcada para escolher um Grupo de Recursos Existente.
-  create_sr:
-    type: boolean
-    title: Deseja criar uma regra de segurança?
-    description: Marque a caixa de seleção para criar uma nova regra no Grupo de Segurança.
-    default: true
   new_rg_name:
     type: string
     title: Nome do novo Grupo de Recursos
@@ -29,16 +24,6 @@ inputs:
     title: Nome do Grupo de Recursos
     description: Selecione um Grupo de Recursos existente na lista.
     default: tbaeta-vRA8-ResourceGroup
-  create_nsg:
-    type: boolean
-    title: Deseja criar um Grupo de Segurança de Rede?
-    description: Marque a caixa de seleção para criar im novo Grupo de Segurança de Rede.
-    default: false
-  nsg_name:
-    type: string
-    title: Nome do Grupo de Segurança de Rede
-    description: Digite um nome para o Grupo de Segurança de Rede.
-    default: brd_nsg
   vn_name:
     type: string
     title: Nome da Rede Virtual
