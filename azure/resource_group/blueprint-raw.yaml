@@ -1,0 +1,25 @@
+inputs:
+  location:
+    type: string
+    default: eastus
+    description: Digite o nome da região em que deseja criar o Grupo de Recursos
+  rg_name:
+    type: string
+    default: vra_rg
+    description: Digite o nome do Grupo de Recursos
+resources:
+  terraform:
+    type: Cloud.Terraform.Configuration
+    properties:
+      variables:
+        location: ${input.location}
+        rg_name: ${input.rg_name}
+      providers:
+        - name: azurerm
+          # List of available cloud zones: Illusion Factory Azure/brazil,Illusion Factory Azure/eastus,Illusion Factory Azure/westus
+          cloudZone: Illusion Factory Azure/brazil
+      terraformVersion: 1.0
+      configurationSource:
+        repositoryId: fa9bf57b-c381-4a3d-a6f2-6ccc5b668d59
+        commitId: d626fe42569a107f511cfa97b9b737a571c3cad1
+        sourceDirectory: azure/resource_group
